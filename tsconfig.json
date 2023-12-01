@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "types": ["@payloadcms/bundler-webpack"],
     "esModuleInterop": true,
     "target": "es5",
     "lib": [
