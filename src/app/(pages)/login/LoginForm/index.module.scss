@@ -20,8 +20,12 @@
 }
 
 .message {
-display: flex;
-align-items: center;
-justify-content: space-between;
-width: 100%;
+margin-bottom: var(--base);
+}
+
+.link{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }
