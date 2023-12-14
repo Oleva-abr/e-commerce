@@ -8,10 +8,10 @@
 
 export type CartItems =
   | {
-      product?: (string | null) | Product;
-      quantity?: number | null;
-      id?: string | null;
-    }[]
+    product?: (string | null) | Product;
+    quantity?: number | null;
+    id?: string | null;
+  }[]
   | null;
 
 export interface Config {
@@ -42,112 +42,112 @@ export interface Page {
       [k: string]: unknown;
     }[];
     links?:
-      | {
-          link: {
-            type?: ('reference' | 'custom') | null;
-            newTab?: boolean | null;
-            icon?: string | Media | null;
-            reference?: {
-              relationTo: 'pages';
-              value: string | Page;
-            } | null;
-            url?: string | null;
-            label: string;
-            appearance?: ('default' | 'primary' | 'secondary') | null;
-          };
-          id?: string | null;
-        }[]
-      | null;
+    | {
+      link: {
+        type?: ('reference' | 'custom') | null;
+        newTab?: boolean | null;
+        icon?: string | Media | null;
+        reference?: {
+          relationTo: 'pages';
+          value: string | Page;
+        } | null;
+        url?: string | null;
+        label: string;
+        appearance?: ('default' | 'primary' | 'secondary') | null;
+      };
+      id?: string | null;
+    }[]
+    | null;
     media?: string | Media | null;
   };
   layout: (
     | {
-        invertBackground?: boolean | null;
+      invertBackground?: boolean | null;
+      richText: {
+        [k: string]: unknown;
+      }[];
+      links?:
+      | {
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          icon?: string | Media | null;
+          reference?: {
+            relationTo: 'pages';
+            value: string | Page;
+          } | null;
+          url?: string | null;
+          label: string;
+          appearance?: ('primary' | 'secondary') | null;
+        };
+        id?: string | null;
+      }[]
+      | null;
+      id?: string | null;
+      blockName?: string | null;
+      blockType: 'cta';
+    }
+    | {
+      invertBackground?: boolean | null;
+      columns?:
+      | {
+        size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
         richText: {
           [k: string]: unknown;
         }[];
-        links?:
-          | {
-              link: {
-                type?: ('reference' | 'custom') | null;
-                newTab?: boolean | null;
-                icon?: string | Media | null;
-                reference?: {
-                  relationTo: 'pages';
-                  value: string | Page;
-                } | null;
-                url?: string | null;
-                label: string;
-                appearance?: ('primary' | 'secondary') | null;
-              };
-              id?: string | null;
-            }[]
-          | null;
+        enableLink?: boolean | null;
+        link?: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          icon?: string | Media | null;
+          reference?: {
+            relationTo: 'pages';
+            value: string | Page;
+          } | null;
+          url?: string | null;
+          label: string;
+          appearance?: ('default' | 'primary' | 'secondary') | null;
+        };
         id?: string | null;
-        blockName?: string | null;
-        blockType: 'cta';
-      }
+      }[]
+      | null;
+      id?: string | null;
+      blockName?: string | null;
+      blockType: 'content';
+    }
     | {
-        invertBackground?: boolean | null;
-        columns?:
-          | {
-              size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
-              richText: {
-                [k: string]: unknown;
-              }[];
-              enableLink?: boolean | null;
-              link?: {
-                type?: ('reference' | 'custom') | null;
-                newTab?: boolean | null;
-                icon?: string | Media | null;
-                reference?: {
-                  relationTo: 'pages';
-                  value: string | Page;
-                } | null;
-                url?: string | null;
-                label: string;
-                appearance?: ('default' | 'primary' | 'secondary') | null;
-              };
-              id?: string | null;
-            }[]
-          | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'content';
-      }
+      invertBackground?: boolean | null;
+      position?: ('default' | 'fullscreen') | null;
+      media: string | Media;
+      id?: string | null;
+      blockName?: string | null;
+      blockType: 'mediaBlock';
+    }
     | {
-        invertBackground?: boolean | null;
-        position?: ('default' | 'fullscreen') | null;
-        media: string | Media;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'mediaBlock';
-      }
-    | {
-        introContent: {
-          [k: string]: unknown;
-        }[];
-        populateBy?: ('collection' | 'selection') | null;
-        relationTo?: 'products' | null;
-        categories?: (string | Category)[] | null;
-        limit?: number | null;
-        selectedDocs?:
-          | {
-              relationTo: 'products';
-              value: string | Product;
-            }[]
-          | null;
-        populatedDocs?:
-          | {
-              relationTo: 'products';
-              value: string | Product;
-            }[]
-          | null;
-        populatedDocsTotal?: number | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'archive';
-      }
+      introContent: {
+        [k: string]: unknown;
+      }[];
+      populateBy?: ('collection' | 'selection') | null;
+      relationTo?: 'products' | null;
+      categories?: (string | Category)[] | null;
+      limit?: number | null;
+      selectedDocs?:
+      | {
+        relationTo: 'products';
+        value: string | Product;
+      }[]
+      | null;
+      populatedDocs?:
+      | {
+        relationTo: 'products';
+        value: string | Product;
+      }[]
+      | null;
+      populatedDocsTotal?: number | null;
+      id?: string | null;
+      blockName?: string | null;
+      blockType: 'archive';
+    }
   )[];
   slug?: string | null;
   meta?: {
@@ -163,10 +163,10 @@ export interface Media {
   id: string;
   alt: string;
   caption?:
-    | {
-        [k: string]: unknown;
-      }[]
-    | null;
+  | {
+    [k: string]: unknown;
+  }[]
+  | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -177,18 +177,19 @@ export interface Media {
   height?: number | null;
 }
 export interface Category {
+  map(arg0: (category: any) => JSX.Element): import("react").ReactNode;
   id: string;
   title: string;
   media?: string | Media | null;
   parent?: (string | null) | Category;
   breadcrumbs?:
-    | {
-        doc?: (string | null) | Category;
-        url?: string | null;
-        label?: string | null;
-        id?: string | null;
-      }[]
-    | null;
+  | {
+    doc?: (string | null) | Category;
+    url?: string | null;
+    label?: string | null;
+    id?: string | null;
+  }[]
+  | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -198,187 +199,187 @@ export interface Product {
   publishedOn?: string | null;
   layout: (
     | {
-        invertBackground?: boolean | null;
+      invertBackground?: boolean | null;
+      richText: {
+        [k: string]: unknown;
+      }[];
+      links?:
+      | {
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          icon?: string | Media | null;
+          reference?: {
+            relationTo: 'pages';
+            value: string | Page;
+          } | null;
+          url?: string | null;
+          label: string;
+          appearance?: ('primary' | 'secondary') | null;
+        };
+        id?: string | null;
+      }[]
+      | null;
+      id?: string | null;
+      blockName?: string | null;
+      blockType: 'cta';
+    }
+    | {
+      invertBackground?: boolean | null;
+      columns?:
+      | {
+        size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
         richText: {
           [k: string]: unknown;
         }[];
-        links?:
-          | {
-              link: {
-                type?: ('reference' | 'custom') | null;
-                newTab?: boolean | null;
-                icon?: string | Media | null;
-                reference?: {
-                  relationTo: 'pages';
-                  value: string | Page;
-                } | null;
-                url?: string | null;
-                label: string;
-                appearance?: ('primary' | 'secondary') | null;
-              };
-              id?: string | null;
-            }[]
-          | null;
+        enableLink?: boolean | null;
+        link?: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          icon?: string | Media | null;
+          reference?: {
+            relationTo: 'pages';
+            value: string | Page;
+          } | null;
+          url?: string | null;
+          label: string;
+          appearance?: ('default' | 'primary' | 'secondary') | null;
+        };
         id?: string | null;
-        blockName?: string | null;
-        blockType: 'cta';
-      }
+      }[]
+      | null;
+      id?: string | null;
+      blockName?: string | null;
+      blockType: 'content';
+    }
     | {
-        invertBackground?: boolean | null;
-        columns?:
-          | {
-              size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
-              richText: {
-                [k: string]: unknown;
-              }[];
-              enableLink?: boolean | null;
-              link?: {
-                type?: ('reference' | 'custom') | null;
-                newTab?: boolean | null;
-                icon?: string | Media | null;
-                reference?: {
-                  relationTo: 'pages';
-                  value: string | Page;
-                } | null;
-                url?: string | null;
-                label: string;
-                appearance?: ('default' | 'primary' | 'secondary') | null;
-              };
-              id?: string | null;
-            }[]
-          | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'content';
-      }
+      invertBackground?: boolean | null;
+      position?: ('default' | 'fullscreen') | null;
+      media: string | Media;
+      id?: string | null;
+      blockName?: string | null;
+      blockType: 'mediaBlock';
+    }
     | {
-        invertBackground?: boolean | null;
-        position?: ('default' | 'fullscreen') | null;
-        media: string | Media;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'mediaBlock';
-      }
-    | {
-        introContent: {
-          [k: string]: unknown;
-        }[];
-        populateBy?: ('collection' | 'selection') | null;
-        relationTo?: 'products' | null;
-        categories?: (string | Category)[] | null;
-        limit?: number | null;
-        selectedDocs?:
-          | {
-              relationTo: 'products';
-              value: string | Product;
-            }[]
-          | null;
-        populatedDocs?:
-          | {
-              relationTo: 'products';
-              value: string | Product;
-            }[]
-          | null;
-        populatedDocsTotal?: number | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'archive';
-      }
+      introContent: {
+        [k: string]: unknown;
+      }[];
+      populateBy?: ('collection' | 'selection') | null;
+      relationTo?: 'products' | null;
+      categories?: (string | Category)[] | null;
+      limit?: number | null;
+      selectedDocs?:
+      | {
+        relationTo: 'products';
+        value: string | Product;
+      }[]
+      | null;
+      populatedDocs?:
+      | {
+        relationTo: 'products';
+        value: string | Product;
+      }[]
+      | null;
+      populatedDocsTotal?: number | null;
+      id?: string | null;
+      blockName?: string | null;
+      blockType: 'archive';
+    }
   )[];
   stripeProductID?: string | null;
   priceJSON?: string | null;
   enablePaywall?: boolean | null;
   paywall?:
-    | (
-        | {
-            invertBackground?: boolean | null;
-            richText: {
-              [k: string]: unknown;
-            }[];
-            links?:
-              | {
-                  link: {
-                    type?: ('reference' | 'custom') | null;
-                    newTab?: boolean | null;
-                    icon?: string | Media | null;
-                    reference?: {
-                      relationTo: 'pages';
-                      value: string | Page;
-                    } | null;
-                    url?: string | null;
-                    label: string;
-                    appearance?: ('primary' | 'secondary') | null;
-                  };
-                  id?: string | null;
-                }[]
-              | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'cta';
-          }
-        | {
-            invertBackground?: boolean | null;
-            columns?:
-              | {
-                  size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
-                  richText: {
-                    [k: string]: unknown;
-                  }[];
-                  enableLink?: boolean | null;
-                  link?: {
-                    type?: ('reference' | 'custom') | null;
-                    newTab?: boolean | null;
-                    icon?: string | Media | null;
-                    reference?: {
-                      relationTo: 'pages';
-                      value: string | Page;
-                    } | null;
-                    url?: string | null;
-                    label: string;
-                    appearance?: ('default' | 'primary' | 'secondary') | null;
-                  };
-                  id?: string | null;
-                }[]
-              | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'content';
-          }
-        | {
-            invertBackground?: boolean | null;
-            position?: ('default' | 'fullscreen') | null;
-            media: string | Media;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'mediaBlock';
-          }
-        | {
-            introContent: {
-              [k: string]: unknown;
-            }[];
-            populateBy?: ('collection' | 'selection') | null;
-            relationTo?: 'products' | null;
-            categories?: (string | Category)[] | null;
-            limit?: number | null;
-            selectedDocs?:
-              | {
-                  relationTo: 'products';
-                  value: string | Product;
-                }[]
-              | null;
-            populatedDocs?:
-              | {
-                  relationTo: 'products';
-                  value: string | Product;
-                }[]
-              | null;
-            populatedDocsTotal?: number | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'archive';
-          }
-      )[]
-    | null;
+  | (
+    | {
+      invertBackground?: boolean | null;
+      richText: {
+        [k: string]: unknown;
+      }[];
+      links?:
+      | {
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          icon?: string | Media | null;
+          reference?: {
+            relationTo: 'pages';
+            value: string | Page;
+          } | null;
+          url?: string | null;
+          label: string;
+          appearance?: ('primary' | 'secondary') | null;
+        };
+        id?: string | null;
+      }[]
+      | null;
+      id?: string | null;
+      blockName?: string | null;
+      blockType: 'cta';
+    }
+    | {
+      invertBackground?: boolean | null;
+      columns?:
+      | {
+        size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
+        richText: {
+          [k: string]: unknown;
+        }[];
+        enableLink?: boolean | null;
+        link?: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          icon?: string | Media | null;
+          reference?: {
+            relationTo: 'pages';
+            value: string | Page;
+          } | null;
+          url?: string | null;
+          label: string;
+          appearance?: ('default' | 'primary' | 'secondary') | null;
+        };
+        id?: string | null;
+      }[]
+      | null;
+      id?: string | null;
+      blockName?: string | null;
+      blockType: 'content';
+    }
+    | {
+      invertBackground?: boolean | null;
+      position?: ('default' | 'fullscreen') | null;
+      media: string | Media;
+      id?: string | null;
+      blockName?: string | null;
+      blockType: 'mediaBlock';
+    }
+    | {
+      introContent: {
+        [k: string]: unknown;
+      }[];
+      populateBy?: ('collection' | 'selection') | null;
+      relationTo?: 'products' | null;
+      categories?: (string | Category)[] | null;
+      limit?: number | null;
+      selectedDocs?:
+      | {
+        relationTo: 'products';
+        value: string | Product;
+      }[]
+      | null;
+      populatedDocs?:
+      | {
+        relationTo: 'products';
+        value: string | Product;
+      }[]
+      | null;
+      populatedDocsTotal?: number | null;
+      id?: string | null;
+      blockName?: string | null;
+      blockType: 'archive';
+    }
+  )[]
+  | null;
   categories?: (string | Category)[] | null;
   relatedProducts?: (string | Product)[] | null;
   slug?: string | null;
@@ -398,13 +399,13 @@ export interface Order {
   stripePaymentIntentID?: string | null;
   total: number;
   items?:
-    | {
-        product: string | Product;
-        price?: number | null;
-        quantity?: number | null;
-        id?: string | null;
-      }[]
-    | null;
+  | {
+    product: string | Product;
+    price?: number | null;
+    quantity?: number | null;
+    id?: string | null;
+  }[]
+  | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -435,14 +436,14 @@ export interface Redirect {
   to?: {
     type?: ('reference' | 'custom') | null;
     reference?:
-      | ({
-          relationTo: 'pages';
-          value: string | Page;
-        } | null)
-      | ({
-          relationTo: 'products';
-          value: string | Product;
-        } | null);
+    | ({
+      relationTo: 'pages';
+      value: string | Page;
+    } | null)
+    | ({
+      relationTo: 'products';
+      value: string | Product;
+    } | null);
     url?: string | null;
   };
   updatedAt: string;
@@ -456,14 +457,14 @@ export interface PayloadPreference {
   };
   key?: string | null;
   value?:
-    | {
-        [k: string]: unknown;
-      }
-    | unknown[]
-    | string
-    | number
-    | boolean
-    | null;
+  | {
+    [k: string]: unknown;
+  }
+  | unknown[]
+  | string
+  | number
+  | boolean
+  | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -483,21 +484,21 @@ export interface Settings {
 export interface Header {
   id: string;
   navItems?:
-    | {
-        link: {
-          type?: ('reference' | 'custom') | null;
-          newTab?: boolean | null;
-          icon?: string | Media | null;
-          reference?: {
-            relationTo: 'pages';
-            value: string | Page;
-          } | null;
-          url?: string | null;
-          label: string;
-        };
-        id?: string | null;
-      }[]
-    | null;
+  | {
+    link: {
+      type?: ('reference' | 'custom') | null;
+      newTab?: boolean | null;
+      icon?: string | Media | null;
+      reference?: {
+        relationTo: 'pages';
+        value: string | Page;
+      } | null;
+      url?: string | null;
+      label: string;
+    };
+    id?: string | null;
+  }[]
+  | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -505,26 +506,26 @@ export interface Footer {
   id: string;
   copyright: string;
   navItems?:
-    | {
-        link: {
-          type?: ('reference' | 'custom') | null;
-          newTab?: boolean | null;
-          icon?: string | Media | null;
-          reference?: {
-            relationTo: 'pages';
-            value: string | Page;
-          } | null;
-          url?: string | null;
-          label: string;
-        };
-        id?: string | null;
-      }[]
-    | null;
+  | {
+    link: {
+      type?: ('reference' | 'custom') | null;
+      newTab?: boolean | null;
+      icon?: string | Media | null;
+      reference?: {
+        relationTo: 'pages';
+        value: string | Page;
+      } | null;
+      url?: string | null;
+      label: string;
+    };
+    id?: string | null;
+  }[]
+  | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
 
 
 declare module 'payload' {
-  export interface GeneratedTypes extends Config {}
+  export interface GeneratedTypes extends Config { }
 }
