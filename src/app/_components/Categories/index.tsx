@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { Category } from '../../../payload/payload-types'
 import CategoryCard from './CategoryCard'
 
-function Categories({ categories }: { categories: Category }) {
+function Categories({ categories }: { categories: Category[] }) {
   return (
     <section className={classes.container}>
       <div className={classes.titleWrapper}>
