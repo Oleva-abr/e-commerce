@@ -11,6 +11,7 @@ import { PageRange } from '../PageRange'
 import { Pagination } from '../Pagination'
 
 import classes from './index.module.scss'
+import { useFilter } from '../../_providers/Filter'
 
 type Result = {
   totalDocs: number
@@ -37,21 +38,22 @@ export type Props = {
 }
 
 export const CollectionArchive: React.FC<Props> = props => {
+  const { categoryFilters, sort } = useFilter()
   const {
     className,
     relationTo,
     showPageRange,
     onResultChange,
-    sort = '-createdAt',
     limit = 10,
     populatedDocs,
     populatedDocsTotal,
-    categories: catsFromProps,
   } = props
 
   const [results, setResults] = useState<Result>({
     totalDocs: typeof populatedDocsTotal === 'number' ? populatedDocsTotal : 0,
-    docs: populatedDocs?.map(doc => doc.value) || [],
+    docs: (populatedDocs || [])
+      .map(doc => (typeof doc.value !== 'string' ? doc.value : null))
+      .filter(Boolean),
     page: 1,
     totalPages: 1,
     hasPrevPage: false,
@@ -95,13 +97,13 @@ export const CollectionArchive: React.FC<Props> = props => {
       {
         sort,
         where: {
-          ...(catsFromProps && catsFromProps?.length > 0
+          ...(categoryFilters && categoryFilters?.length > 0
             ? {
                 categories: {
                   in:
-                    typeof catsFromProps === 'string'
-                      ? [catsFromProps]
-                      : catsFromProps.map(cat => cat.id).join(','),
+                    typeof categoryFilters === 'string'
+                      ? [categoryFilters]
+                      : categoryFilters.map((cat: string) => cat).join(','),
                 },
               }
             : {}),
@@ -143,7 +145,7 @@ export const CollectionArchive: React.FC<Props> = props => {
     return () => {
       if (timer) clearTimeout(timer)
     }
-  }, [page, catsFromProps, relationTo, onResultChange, sort, limit])
+  }, [page, categoryFilters, relationTo, onResultChange, sort, limit])
 
   return (
     <div className={[classes.collectionArchive, className].filter(Boolean).join(' ')}>
