@@ -5,13 +5,12 @@ import qs from 'qs'
 
 import { Product } from '../../../payload/payload-types'
 import type { ArchiveBlockProps } from '../../_blocks/ArchiveBlock/types'
+import { useFilter } from '../../_providers/Filter'
 import { Card } from '../Card'
-
 import { PageRange } from '../PageRange'
 import { Pagination } from '../Pagination'
 
 import classes from './index.module.scss'
-import { useFilter } from '../../_providers/Filter'
 
 type Result = {
   totalDocs: number
@@ -29,8 +28,7 @@ export type Props = {
   relationTo?: 'products'
   populateBy?: 'collection' | 'selection'
   showPageRange?: boolean
-  onResultChange?: (result: Result) => void // eslint-disable-line no-unused-vars
-  sort?: string
+  onResultChange?: (result: Result) => void
   limit?: number
   populatedDocs?: ArchiveBlockProps['populatedDocs']
   populatedDocsTotal?: ArchiveBlockProps['populatedDocsTotal']
@@ -39,6 +37,7 @@ export type Props = {
 
 export const CollectionArchive: React.FC<Props> = props => {
   const { categoryFilters, sort } = useFilter()
+
   const {
     className,
     relationTo,
@@ -51,9 +50,7 @@ export const CollectionArchive: React.FC<Props> = props => {
 
   const [results, setResults] = useState<Result>({
     totalDocs: typeof populatedDocsTotal === 'number' ? populatedDocsTotal : 0,
-    docs: (populatedDocs || [])
-      .map(doc => (typeof doc.value !== 'string' ? doc.value : null))
-      .filter(Boolean),
+    docs: (populatedDocs?.map(doc => doc.value) || []) as [],
     page: 1,
     totalPages: 1,
     hasPrevPage: false,
@@ -71,22 +68,15 @@ export const CollectionArchive: React.FC<Props> = props => {
   const scrollToRef = useCallback(() => {
     const { current } = scrollRef
     if (current) {
-      // current.scrollIntoView({
-      //   behavior: 'smooth',
-      // })
     }
   }, [])
 
   useEffect(() => {
     if (!isLoading && typeof results.page !== 'undefined') {
-      // scrollToRef()
     }
   }, [isLoading, scrollToRef, results])
 
   useEffect(() => {
-    // hydrate the block with fresh content after first render
-    // don't show loader unless the request takes longer than x ms
-    // and don't show it during initial hydration
     const timer: NodeJS.Timeout = setTimeout(() => {
       if (hasHydrated) {
         setIsLoading(true)
@@ -134,7 +124,7 @@ export const CollectionArchive: React.FC<Props> = props => {
           }
         }
       } catch (err) {
-        console.warn(err) // eslint-disable-line no-console
+        console.warn(err)
         setIsLoading(false)
         setError(`Unable to load "${relationTo} archive" data at this time.`)
       }
@@ -165,9 +155,10 @@ export const CollectionArchive: React.FC<Props> = props => {
 
         <div className={classes.grid}>
           {results.docs?.map((result, index) => {
-            return <Card relationTo="products" doc={result} showCategories />
+            return <Card key={index} relationTo="products" doc={result} showCategories />
           })}
         </div>
+
         {results.totalPages > 1 && (
           <Pagination
             className={classes.pagination}

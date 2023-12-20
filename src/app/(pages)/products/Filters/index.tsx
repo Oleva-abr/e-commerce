@@ -8,35 +8,40 @@ import { Checkbox } from '../../../_components/Checkbox'
 import { HR } from '../../../_components/HR'
 import { RadioButton } from '../../../_components/Radio'
 
-function Filters({ categories }: { categories: Category[] }) {
+const Filters = ({ categories }: { categories: Category[] }) => {
   const { categoryFilters, sort, setCategoryFilters, setSort } = useFilter()
 
   const handleCategories = (categoryId: string) => {
     if (categoryFilters.includes(categoryId)) {
-      const updetedCategories = categoryFilters.filter(id => id !== categoryId)
-      setCategoryFilters(updetedCategories)
+      const updatedCategories = categoryFilters.filter(id => id !== categoryId)
+
+      setCategoryFilters(updatedCategories)
     } else {
       setCategoryFilters([...categoryFilters, categoryId])
     }
   }
+
   const handleSort = (value: string) => setSort(value)
+
   return (
     <div className={classes.filters}>
-      <h6 className={classes.title}>Product Categories</h6>
-      <div className={classes.categories}>
-        {categories.map(category => {
-          const isSelected = categoryFilters.includes(category.id)
+      <div>
+        <h6 className={classes.title}>Product Categories</h6>
+        <div className={classes.categories}>
+          {categories.map(category => {
+            const isSelected = categoryFilters.includes(category.id)
 
-          return (
-            <Checkbox
-              key={category.id}
-              label={category.title}
-              value={category.id}
-              isSelected={isSelected}
-              onClickHandler={handleCategories}
-            />
-          )
-        })}
+            return (
+              <Checkbox
+                key={category.id}
+                label={category.title}
+                value={category.id}
+                isSelected={isSelected}
+                onClickHandler={handleCategories}
+              />
+            )
+          })}
+        </div>
         <HR className={classes.hr} />
         <h6 className={classes.title}>Sort By</h6>
         <div className={classes.categories}>
@@ -50,7 +55,7 @@ function Filters({ categories }: { categories: Category[] }) {
           <RadioButton
             label="Oldest"
             value="createdAt"
-            isSelected={sort === '-createdAt'}
+            isSelected={sort === 'createdAt'}
             onRadioChange={handleSort}
             groupName="sort"
           />
