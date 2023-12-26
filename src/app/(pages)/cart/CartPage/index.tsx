@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 import { Page, Settings } from '../../../../payload/payload-types'
 import { Button } from '../../../_components/Button'
-import { HR } from '../../../_components/HR'
+
 import { LoadingShimmer } from '../../../_components/LoadingShimmer'
 
 import { useAuth } from '../../../_providers/Auth'
