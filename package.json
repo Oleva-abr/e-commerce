@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@payloadcms/db-mongodb": "^1.0.0",
-    "@payloadcms/plugin-cloud": "^0.0.1",
+    "@payloadcms/plugin-cloud": "^2.0.0",
     "@payloadcms/plugin-nested-docs": "^1.0.9",
     "@payloadcms/plugin-redirects": "^1.0.0",
     "@payloadcms/plugin-seo": "^1.0.10",
