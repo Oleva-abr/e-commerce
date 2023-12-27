@@ -45,6 +45,7 @@
     "react-hook-form": "^7.45.1",
     "react-router-dom": "5.3.4",
     "stripe": "^10.17.0",
+    "webpack": "^5.89.0",
     "yarn": "^1.22.21"
   },
   "devDependencies": {
